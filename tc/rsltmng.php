@@ -100,6 +100,7 @@ else if(isset($_REQUEST['logout'])) {
                             <?php }else { ?>
                         <li><input type="submit" value="DashBoard" name="dashboard" class="subbtn" title="Dash Board"/></li>
                             <?php } ?>
+                        <h3 style="text-align:left;color:#ffffff;">Nama : <?php echo htmlspecialchars_decode($_SESSION['tcname'],ENT_QUOTES); ?></h3>
                     </ul>
                 </div>
                 <div class="page">

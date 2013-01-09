@@ -63,6 +63,7 @@ session_start();
                         <li><input type="submit" value="LogOut" name="logout" class="subbtn" title="Log Out"/></li>
                         <?php } ?>
                     </ul>
+                    <h3 style="text-align:left;color:#ffffff;">Nama : <?php echo htmlspecialchars_decode($_SESSION['tcname'],ENT_QUOTES); ?></h3>
                 </form>
             </div>
             <div class="admpage">

@@ -109,7 +109,7 @@ else if(isset($_REQUEST['dashboard'])){
                         <li><input type="submit" value="LogOut" name="logout" class="subbtn" title="Log Out"/></li>
                         <li><input type="submit" value="DashBoard" name="dashboard" class="subbtn" title="Dash Board"/></li>
                         <li><input type="submit" value="Save" name="savem" class="subbtn" onclick="validateform('editprofile')" title="Save the changes"/></li>
-                     
+                     <h3 style="text-align:left;color:#ffffff;">Nama : <?php echo htmlspecialchars_decode($_SESSION['tcname'],ENT_QUOTES); ?></h3>
                </ul>
           </div>
       <div class="page">

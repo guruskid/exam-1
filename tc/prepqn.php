@@ -194,6 +194,7 @@ if (isset($_SESSION['tcname']) && isset($_SESSION['testqn'])) {
                         <li><input type="submit" value="Add" name="add" class="subbtn" title="Add"/></li>
 <?php }
 } ?>
+<h3 style="text-align:left;color:#ffffff;">Nama : <?php echo htmlspecialchars_decode($_SESSION['tcname'],ENT_QUOTES); ?></h3>
                     </ul>
 
                 </div>
