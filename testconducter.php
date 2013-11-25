@@ -70,6 +70,7 @@ else if(isset($_REQUEST['dashboard'])){
             if(isset($_REQUEST['viewsummary']))
             {
                  header('Location: summary.php');
+                 
             }
             if(isset($_REQUEST['summary']))
              {
@@ -231,7 +232,7 @@ header("Cache-Control: no-cache, must-revalidate");
                       <th style="width:20%;"><h4 style="color: #af0a36;"><input type="checkbox" name="markreview" value="mark"> Mark for Review</input></h4></th>
                   </tr>
               </table>
-              <td> <img src ="<?php echo htmlspecialchars_decode($r['image'],ENT_QUOTES); ?>" width="340" /> </td>
+             <center><img src ="<?php echo htmlspecialchars_decode($r['image'],ENT_QUOTES); ?>" width="800" /></center>
              <textarea cols="100" rows="8" name="question" readonly style="width:96.8%;text-align:left;margin-left:2%;margin-top:2px;font-size:120%;font-weight:bold;margin-bottom:0;color:#0000ff;padding:2px 2px 2px 2px;">
              <?php echo htmlspecialchars_decode($r['question'],ENT_QUOTES); ?></textarea>
               <table border="0" width="100%" class="ntab">

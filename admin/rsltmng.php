@@ -149,18 +149,41 @@ else if(isset($_REQUEST['logout'])) {
                     </table>
                                 <?php
 
-                                $result1=executeQuery("select s.stdname,s.emailid,IFNULL((select sum(q.marks) from studentquestion as sq,question as q where q.qnid=sq.qnid and sq.testid=".$_REQUEST['testid']." and sq.stdid=st.stdid and sq.stdanswer=q.correctanswer),0) as om from studenttest as st, student as s where s.stdid=st.stdid and st.testid=".$_REQUEST['testid'].";" );
-
+                                //$result1=executeQuery("select s.stdname,s.emailid,IFNULL((select sum(q.marks)
+                                //                     from studentquestion as sq,question as q
+                                 //                    where q.qnid=sq.qnid and sq.testid=".$_REQUEST['testid']."
+                                  //                  and sq.stdid=st.stdid and sq.stdanswer=q.correctanswer),0) as om
+                                   //                  from studenttest as st, student as s
+                                   //                  where s.stdid=st.stdid and st.testid=".$_REQUEST['testid'].";" );
+                                 $result1=executeQuery("select s.stdname,s.Name,t.testname,sub.subname,s.emailid, DATE_FORMAT(st.starttime,'%d %M %Y %H:%i:%s') as stime,TIMEDIFF(st.endtime,st.starttime) as dur,(select sum(marks)
+                                                 from question where testid=".$_REQUEST['testid'].") as tm,
+                                                 IFNULL((select sum(q.marks)
+                                                  from studentquestion as sq, question as q
+                                                  where sq.testid=q.testid
+                                                  and sq.qnid=q.qnid
+                                                  and sq.answered='answered'
+                                                  and sq.stdanswer=q.correctanswer
+                                                  and sq.stdid=s.stdid
+                                                  and sq.testid=".$_REQUEST['testid']."),0) as om
+                                                 from student as s,test as t, subject as sub,studenttest as st
+                                                 where s.stdid=st.stdid
+                                                 and st.testid=t.testid
+                                                 and t.subid=sub.subid
+                                                 and st.stdid=s.stdid
+                                                 and st.testid=".$_REQUEST['testid']." ORDER BY dur ASC;") ;
+                                
                                 if(mysql_num_rows($result1)==0) {
                                     echo"<h3 style=\"color:#0000cc;text-align:center;\">No Students Yet Attempted this Test!</h3>";
                                 }
                                 else {
                                     ?>
-                    <table cellpadding="30" cellspacing="10" class="datatable">
+                    <table cellpadding="20" cellspacing="5" class="datatable">
                         <tr>
                             <th>Student Name</th>
+                            <th>Name</th>
                             <th>Email-ID</th>
                             <th>Obtained Marks</th>
+                            <th>Test Duration</th>
                             <th>Result(%)</th>
                             
 
@@ -171,8 +194,10 @@ else if(isset($_REQUEST['logout'])) {
                                             ?>
                         <tr>
                             <td><?php echo htmlspecialchars_decode($r1['stdname'],ENT_QUOTES); ?></td>
+                            <td><?php echo htmlspecialchars_decode($r1['Name'],ENT_QUOTES); ?></td>
                             <td><?php echo htmlspecialchars_decode($r1['emailid'],ENT_QUOTES); ?></td>
                             <td><?php echo $r1['om']; ?></td>
+                            <td><?php echo $r1['dur']; ?></td>
                             <td><?php echo ($r1['om']/$r['maxmarks']*100)." %"; ?></td>
                             
                             

@@ -184,7 +184,7 @@ DO update studenttest set correctlyanswered=(select count(*) from studentquestio
                             } else {
                                 $result = executeQuery("select t.*,s.subname
                                                        from test as t, subject as s, student as m
-                                                       where s.subid=t.subid and t.testname=m.city and CURRENT_TIMESTAMP<t.testto and t.totalquestions=
+                                                       where s.subid=t.subid and t.testname=m.city and m.stdid=" . $_SESSION['stdid'] . " and CURRENT_TIMESTAMP<t.testto and t.totalquestions=
                                                        (select count(*)
                                                        from question where testid=t.testid) and NOT EXISTS
                                                        (select stdid,testid from studenttest where testid=t.testid and stdid=" . $_SESSION['stdid'] . ");");

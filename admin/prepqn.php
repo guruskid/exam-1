@@ -1,4 +1,34 @@
-
+<script type="text/javascript" src="js/jquery-1.3.2.js" ></script>
+<script type="text/javascript" src="js/ajaxupload.3.5.js" ></script>
+<script type="text/javascript" >
+	$(function(){
+		var btnUpload=$('#upload');
+		var status=$('#status');
+		new AjaxUpload(btnUpload, {
+			action: 'upload-file.php',
+			name: 'uploadfile',
+			onSubmit: function(file, ext){
+				 if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
+                    // extension is not allowed 
+					status.text('Only JPG, PNG or GIF files are allowed');
+					return false;
+				}
+				status.text('Uploading...');
+			},
+			onComplete: function(file, response){
+				//On completion clear the status
+				status.text('');
+				//Add uploaded file to list
+				if(response==="success"){
+					$('<li></li>').appendTo('#files').html('<img src="./uploads/'+file+'" alt="" /><br />'+file).addClass('success');
+				} else{
+					$('<li></li>').appendTo('#files').text(file).addClass('error');
+				}
+			}
+		});
+		
+	});
+</script>
 <?php
 /*
  * ***************************************************
@@ -25,7 +55,9 @@
   Case 3 : Delete - Delete the selected Question/s from Test.
   Case 4 : Edit - Update the Question.
   Case 5 : Add - Add new Question to the Test.
-
+  Case 6 : upload file gambar.
+  
+  
  * ------------ *
  * HTML Section *
  * ------------ *
@@ -103,6 +135,8 @@ else if (isset($_REQUEST['savea'])) {
     /*     * ************************ Step 2 - Case 5 ************************ */
     //Add the new Question
     $cancel = false;
+    //save question baru
+                
     $result = executeQuery("select max(qnid) as qn from question where testid=" . $_SESSION['testqn'] . ";");
     $r = mysql_fetch_array($result);
     if (is_null($r['qn']))
@@ -137,7 +171,8 @@ else if (isset($_REQUEST['savea'])) {
     } else if (!$cancel) {
         $query = "insert into question values(" . $_SESSION['testqn'] . ",$newstd,'" . htmlspecialchars($_REQUEST['question'],ENT_QUOTES) . "',
         '" . htmlspecialchars($_REQUEST['optiona'],ENT_QUOTES) . "','" . htmlspecialchars($_REQUEST['optionb'],ENT_QUOTES) . "','" . htmlspecialchars($_REQUEST['optionc'],ENT_QUOTES) . "',
-        '" . htmlspecialchars($_REQUEST['optiond'],ENT_QUOTES) . "','" . htmlspecialchars($_REQUEST['correctans'],ENT_QUOTES) . "'," . htmlspecialchars($_REQUEST['marks'],ENT_QUOTES) . ",'" . htmlspecialchars($_REQUEST['image'],ENT_QUOTES) . "')";
+        '" . htmlspecialchars($_REQUEST['optiond'],ENT_QUOTES) . "','" . htmlspecialchars($_REQUEST['correctans'],ENT_QUOTES) . "'," . htmlspecialchars($_REQUEST['marks'],ENT_QUOTES) . ",
+        '" . htmlspecialchars($_REQUEST['image'],ENT_QUOTES) . "')";
         if (!@executeQuery($query))
             $_GLOBALS['message'] = mysql_error();
         else
@@ -145,6 +180,7 @@ else if (isset($_REQUEST['savea'])) {
     }
     closedb();
 }
+
 ?>
 <html>
     <head>
@@ -153,6 +189,7 @@ else if (isset($_REQUEST['savea'])) {
         <link rel="stylesheet" type="text/css" href="../oes.css"/>
         <script type="text/javascript" src="../tiny_mce/tiny_mce.js"></script>
         <script type="text/javascript" src="../validate.js" ></script>
+        
 
         <!--TinyMCE Integration-->
        <script type="text/javascript">
@@ -220,7 +257,6 @@ if (isset($_SESSION['admname']) && isset($_SESSION['testqn'])) {
         //navigation for Add option
         if (isset($_REQUEST['add'])) {
         ?>
-        <h3 style="text-align:left;color:#ffffff;">Nama : <?php echo htmlspecialchars_decode($_SESSION['admname'],ENT_QUOTES); ?></h3>
                             <li><input type="submit" value="Cancel" name="cancel" class="subbtn" title="Cancel"/></li>
                             <li><input type="submit" value="Save" name="savea" class="subbtn" onclick="validateqnform('prepqn')" title="Save the Changes"/></li>
 
@@ -237,6 +273,7 @@ if (isset($_SESSION['admname']) && isset($_SESSION['testqn'])) {
                         <li><input type="submit" value="Add" name="add" class="subbtn" title="Add"/></li>
                         <?php }
                 } ?>
+                <h3 style="text-align:left;color:#ffffff;">Nama : <?php echo htmlspecialchars_decode($_SESSION['admname'],ENT_QUOTES); ?></h3>
                     </ul>
 
                 </div>
@@ -256,11 +293,19 @@ if (isset($_SESSION['admname']) && isset($_SESSION['testqn'])) {
                         <?php
                         if (isset($_SESSION['admname']) && isset($_SESSION['testqn'])) {
 
-                            if (isset($_REQUEST['add'])) {
+                        if (isset($_REQUEST['add'])) {
+                                  
                                 /*                                 * ************************ Step 3 - Case 1 ************************ */
                                 //Form for the new Question
                         ?>
-                                <table cellpadding="20" cellspacing="20" style="text-align:left;" >
+                                <table cellpadding="20" cellspacing="20" style="text-align:left;"  >
+                                     <tr>
+                                        <td>Upload image</td>
+                                        <td>
+                                         <div id="upload" ><span>Upload Image<span></div><span id="status" ></span>
+                                         <ul id="files" ></ul>
+                                         </td>
+                                    </tr>
                                     <tr>
                                         <td>Link Image</td>
                                         <td><textarea name="image" cols="40" rows="3"  ></textarea></td>
@@ -271,20 +316,20 @@ if (isset($_SESSION['admname']) && isset($_SESSION['testqn'])) {
                                     </tr>
                                     <tr>
                                         <td>Option A</td>
-                                        <td><input type="text" name="optiona" value="" size="30"  /></td>
+                                        <td><input type="text" name="optiona" value="" size="100"  /></td>
                                     </tr>
                                     <tr>
                                         <td>Option B</td>
-                                        <td><input type="text" name="optionb" value="" size="30"  /></td>
+                                        <td><input type="text" name="optionb" value="" size="100"  /></td>
                                     </tr>
 
                                     <tr>
                                         <td>Option C</td>
-                                        <td><input type="text" name="optionc" value="" size="30"  /></td>
+                                        <td><input type="text" name="optionc" value="" size="100"  /></td>
                                     </tr>
                                     <tr>
                                         <td>Option D</td>
-                                        <td><input type="text" name="optiond" value="" size="30"  /></td>
+                                        <td><input type="text" name="optiond" value="" size="100"  /></td>
                                     </tr>
                                     <tr>
                                         <td>Correct Answer</td>
@@ -319,6 +364,13 @@ if (isset($_SESSION['admname']) && isset($_SESSION['testqn'])) {
                                     //editing components
 ?>
                                     <table cellpadding="20" cellspacing="20" style="text-align:left;margin-left:15em;" >
+                                        <tr>
+                                        <td>Upload image</td>
+                                        <td>
+                                         <div id="upload" ><span>Upload Image<span></div><span id="status" ></span>
+                                         <ul id="files" ></ul>
+                                         </td>
+                                        </tr>
                                         
                                         <tr>
                                             <td>Link Image<input type="hidden" name="qnid" value="<?php echo $r['qnid']; ?>" /></td>

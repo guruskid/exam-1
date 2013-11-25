@@ -1,6 +1,3 @@
-
-
-
 <?php
 
 /*
@@ -34,12 +31,13 @@ else if(isset($_REQUEST['dashboard'])){
 }
 if(isset($_SESSION['starttime']))
 {
+    executeQuery("update studenttest set status='over',endtime=(select CURRENT_TIMESTAMP) where testid=".$_SESSION['testid']." and stdid=".$_SESSION['stdid'].";");
     unset($_SESSION['starttime']);
     unset($_SESSION['endtime']);
     unset($_SESSION['tqn']);
     unset($_SESSION['qn']);
     unset($_SESSION['duration']);
-    executeQuery("update studenttest set status='over' where testid=".$_SESSION['testid']." and stdid=".$_SESSION['stdid'].";");
+    
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

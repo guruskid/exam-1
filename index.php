@@ -99,7 +99,7 @@ Step 2: Display the Html page to receive Authentication Parameters(Name & Passwo
        
        <ul id="menu">
                     <?php if(isset($_SESSION['stdname'])){
-                          header('Location: stdwelcome.php');}else{  
+                          header('Location:stdwelcome.php');}else{  
                           /***************************** Step 2 ****************************/
                         ?>
 

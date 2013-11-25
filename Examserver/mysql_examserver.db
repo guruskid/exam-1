@@ -1,0 +1,198 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: examserv
+-- ------------------------------------------------------
+-- Server version	5.0.45
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `computer_networks`
+--
+
+DROP TABLE IF EXISTS `computer_networks`;
+CREATE TABLE `computer_networks` (
+  `qno` mediumint(9) NOT NULL auto_increment,
+  `question` text,
+  `choice1` text,
+  `choice2` text,
+  `choice3` text,
+  `answer` text,
+  PRIMARY KEY  (`qno`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `computer_networks`
+--
+
+LOCK TABLES `computer_networks` WRITE;
+/*!40000 ALTER TABLE `computer_networks` DISABLE KEYS */;
+INSERT INTO `computer_networks` VALUES (1,'Expansion for MAN is','A. Management Area Network ','B. Metropolitan Area Network ','C. Man Area Network ','2'),(2,'Expansion for WAN is','A. Wide Area Network ','B. Wide Area Naming ','C. Wide Angle Network ','1'),(3,'Expansion for OSI is','A. Open Single Interonnection  ','B. Open System Interconnection ','C. One System Interconnection ','2'),(4,'Which layer is concerned with transmitting raw bits over a communication channel ?','A. Physical layer  ','B. Data link layer ','C. Network layer ','1'),(5,'Which layer is concerned with controlling the operation of subnet in OSI model ?','A. Physical layer  ','B. Data link layer ','C. Network layer ','3'),(6,'How many layers are in OSI model ?','A. 4  ','B. 6 ','C. 7 ','3'),(7,'IEEE standard 802.4 relates with','A. Token Bus','B. Token Ring','C. 1 persistent CSMA/CD LAN ','1'),(8,'IEEE standard 802.3 relates with','A. Token Bus','B. Token Ring','C. 1 persistent CSMA/CD LAN ','3'),(9,'When a frame is sent to a group address, all the stations in the group receive it','A. Broadcast','B. Multicast','C. Unicast ','2'),(10,'When a frame is sent to a LAN, all the stations in the LAN receive it','A. Broadcast','B. Multicast','C. Unicast ','1'),(11,'IEEE standard 802.5 relates with','A. Token Bus','B. Token Ring','C. 1 persistent CSMA/CD LAN ','2'),(12,'How many layers are in TCP/IP model ?','A. 4  ','B. 6 ','C. 7 ','1'),(13,'Expansion for CSMA is','A. Channel Single Multiple Access  ','B. Carrier Sense Multiple Access','C. Channel Sense Multiple Access ','2'),(14,'Expansion for CSMA/CD is','A. Channel Single Multiple Access with Carrier Detection  ','B. Channel Sense Multiple Access with Collision Detection','C. Carrier Sense Multiple Access with Collision Detection ','3'),(15,'Expansion for OSPF is','A. Open Shortest Path First  ','B. One Shortest Path Frame','C. One Shortest Panel First ','1'),(16,'IEEE standard 802.6 relates with','A. Token Bus','B. Distributed Queue Dual Bus','C. 1 persistent CSMA/CD LAN ','2');
+/*!40000 ALTER TABLE `computer_networks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `grammar`
+--
+
+DROP TABLE IF EXISTS `grammar`;
+CREATE TABLE `grammar` (
+  `qno` mediumint(9) NOT NULL auto_increment,
+  `question` text,
+  `choice1` text,
+  `choice2` text,
+  `choice3` text,
+  `answer` text,
+  PRIMARY KEY  (`qno`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `grammar`
+--
+
+LOCK TABLES `grammar` WRITE;
+/*!40000 ALTER TABLE `grammar` DISABLE KEYS */;
+INSERT INTO `grammar` VALUES (1,'-------- is a word that tells what the subject of the sentence does, says, thinks, or feels and  also communicates when things take place. ','A. Verb','B. Noun','C. Pronoun  ','1'),(2,'-------- is the name of a person, place, thing, or idea. Whatever exists, we assume, can be named, and that name is a -------. ','A. Verb','B. Noun','C. Pronoun  ','2'),(3,'words which perform the function of naming things are commonly referred to as .........., and words which perform the function of expressing states or actions are commonly referred to as .......... ','A. nouns and Verb','B. verb and adverb','C. adjective and adverb  ','1'),(4,'........... are a class of words that indicate relationships between nouns, pronouns and other words in a sentence. Most often they come before a noun.  ','A. Verb','B.Adverb','C. Preposition ','3'),(5,' across, after, at, before, between are ............  ','A. Compound Prepositions','B. Simple Prepositions','C. None ','2'),(6,' in between  and in front of  are ............  ','A. Compound Prepositions','B. Simple Prepositions','C. None ','1');
+/*!40000 ALTER TABLE `grammar` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ims`
+--
+
+DROP TABLE IF EXISTS `ims`;
+CREATE TABLE `ims` (
+  `qno` mediumint(9) NOT NULL auto_increment,
+  `question` text,
+  `choice1` text,
+  `choice2` text,
+  `choice3` text,
+  `answer` text,
+  PRIMARY KEY  (`qno`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ims`
+--
+
+LOCK TABLES `ims` WRITE;
+/*!40000 ALTER TABLE `ims` DISABLE KEYS */;
+INSERT INTO `ims` VALUES (1,'Expansion for IMS is','A. IP Multimedia Subsystem','B. IP Management System','C.IP Manual System  ','1'),(2,'Expansion for HSS is','A. Home Substitute System ','B. Home Subscribtion System','C. Home Subscriber Server  ','3'),(3,'Expansion for IMSI is','A. Inclined Mobile Sun Identity ','B. International Mobile Subscriber Identity','C. International Manual Subscribed Identity  ','2'),(4,'Expansion for TMSI is','A. Terminal Mobile Sun Identity ','B. Terminal Mobile Subscriber Identity','C. Temporary Mobile Subscriber Identity  ','3'),(5,'Expansion for IMEI is','A. Inclined Mobile Enlarged Identity ','B. International Mobile Equipment Identity','C. International Manual Equipment Identity  ','2'),(6,'Expansion for MSISDN is','A. Mobile Subscriber Identity Number ','B. Manual Subscriber Identity Number','C. Mobile Subscriber ISDN Number  ','3'),(7,'Expansion for IMPI is','A. IP Multimedia Private Identity','B. IP Multimedia Public Identity','C. IP Multimedia Prime Number','1'),(8,'Expansion for IMPU is','A. IP Multimedia Private Identity','B. IP Multimedia Public Identity','C. IP Multimedia Prime Number','2'),(9,'Expansion for CSCSF is','A. Connection Session Control Funnction','B. Call Service Connection Function','C. Call Session Control Function','3'),(10,'Expansion for BGCF is','A. Breakout Gateway Common Function','B. Breakout Gateway Control Function','C. Binary Gateway Control Function','2'),(11,'Name the charging which is used for prepaid services, or real-time credit control of postpaid services ?','A. Offline Charging','B. Online Charging','C. Connection Charging','2'),(12,'Name the charging which is applied to users who pay for their services periodically (e.g., at the end of the month) ?','A. Offline Charging','B. Online Charging','C. Connection Charging','1'),(13,'Name the charging when number of credit units is immediately deducted from the user\'s account by the ECF and the MRFC or AS is then authorized to provide the service ?','A. Offline Charging','B. IEC (Immediate Event Charging)','C. ECUR (Event Charging with Unit Reservation)','2'),(14,'Name the charging when the ECF first reserves a number of credit units in the user\'s account and then authorizes the MRFC or the AS ?','A. Offline Charging','B. IEC (Immediate Event Charging)','C. ECUR (Event Charging with Unit Reservation)','3'),(15,'Name the server that host and execute services, and interface with the S-CSCF using SIP ?','A. Home Subscriber Server','B. Application Server','C. Media Server','2'),(16,'Name the server which is the master user database that supports the IMS network entities that are actually handling the calls/sessions ?','A. Home Subscriber Server','B. Application Server','C. Media Server','1'),(17,'Name the SIP server that includes routing functionality based on telephone numbers. It is only used when calling from the IMS to a phone in a circuit switched network, such as the PSTN or the PLMN. ?','A. Home Subscriber Server','B. Application Server','C. BGCF','3'),(18,'Name the SIP function which is the central node of the signalling plane ?','A. S-CSCF (Serving-CSCF)','B. I-CSCF (Interrogating-CSCF)','C. P-CSCF (Proxy-CSCF)','1'),(19,'Name the SIP function which is the first point of contact for the IMS terminal ?','A. S-CSCF (Serving-CSCF)','B. I-CSCF (Interrogating-CSCF)','C. P-CSCF (Proxy-CSCF)','3'),(20,'Name the SIP function located at the edge of an administrative domain ?','A. S-CSCF (Serving-CSCF)','B. I-CSCF (Interrogating-CSCF)','C. P-CSCF (Proxy-CSCF)','2');
+/*!40000 ALTER TABLE `ims` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `java`
+--
+
+DROP TABLE IF EXISTS `java`;
+CREATE TABLE `java` (
+  `qno` mediumint(9) NOT NULL auto_increment,
+  `question` text,
+  `choice1` text,
+  `choice2` text,
+  `choice3` text,
+  `answer` text,
+  PRIMARY KEY  (`qno`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `java`
+--
+
+LOCK TABLES `java` WRITE;
+/*!40000 ALTER TABLE `java` DISABLE KEYS */;
+INSERT INTO `java` VALUES (1,'Expansion of EJB is','A. Enterprise Java Beans','B. Enterprise Jar Beans','C. Enhanced Java Beans ','1'),(2,'Expansion for RMI is','A. Remote method Invocation','B. Remote Manager Invocation','C. Ran method Increment','1'),(3,'Expansion for JDBC is','A. Java Database Connectivity','B. Java Database Car','C. Jar Database Connection','2'),(4,'Expansion for JVM is','A. Java Vehicle Machine','B. Java Virtual Machine','C. Jar Virtual Machine','2'),(5,'Expansion for JNDI is','A. Java Naming and Digital Interface','B. Java Naming and Directory Implementation','C. Java Naming and Directory Interface','3'),(6,'Life cycle of an applet consist of the following methods','A. initialize() start() stop() destroy()','init() start() stop() destroy()','increase() start() stop() destroy()','2'),(7,'Which method is called for the first time an applet is loaded into the memory of a computer ?','A. start()','B. stop()','C. init() ','3'),(8,'Which method is called immediately after the init() method and every time the applet receives focus as a result of scrolling in the active window ?','A. destroy()','B. start()','C. stop() ','2'),(9,'Which method is called every time the applet loses the focus ?','A. destroy()','B. start()','C. stop() ','3'),(10,'Which method is called by the browser when the user moves to another page ?','A. destroy()','B. start()','C. stop() ','1'),(11,'Which method draws the graphics of the applet in the drawing area ?','A. destroy()','B. paint()','C. stop() ','2'),(12,'Which method causes the runtime system to put the current thread to sleep and execute the next thread in the queue ?','A. notify()','B. wait()','C. yield() ','3'),(13,'What is the expansion fo AWT and JFC ?','A. Abstract Window Toolkit(AWT) and Java Foundation Class (JFC)','B. Applicable Window Toolkit (AWT) and Jar Foundation Class (JFC)','C. Abstract Window Time (AWT) and Jar Foundation Class (JFC) ','2'),(14,'Exception handling in java is maintained by the following keywords','A. try, catch, throw, throws and finally','B. exit, error and handler','C. exception, catching and trying ','1'),(15,'Which is the default layout manager for an applet','A. Grid Layout Manager','B. Border Layout Manager','C. Flow Layout Manager ','3'),(16,'Which layout manager organize the display into a rectangular grid ?','A. Grid Layout Manager','B. Border Layout Manager','C. Flow Layout Manager ','1'),(17,'Which layout manager enables you to position the component using directions: North, South, West, East and Center ?','A. Grid Layout Manager','B. Border Layout Manager','C. Flow Layout Manager ','2'),(18,'Which tool creates the C-header files necessary to extend your java code with the C language ?','A. javah','B. javap','C. javadoc ','1'),(19,'Which tool is used to disassemble the java bytecode to display the member varaibles and the methods ?','A. javah','B. javap','C. javadoc ','2'),(20,'Which package support for input and ouput operation  ?','A. java.io','B. java.lang','C. java.rmi','1');
+/*!40000 ALTER TABLE `java` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ss7`
+--
+
+DROP TABLE IF EXISTS `ss7`;
+CREATE TABLE `ss7` (
+  `qno` mediumint(9) NOT NULL auto_increment,
+  `question` text,
+  `choice1` text,
+  `choice2` text,
+  `choice3` text,
+  `answer` text,
+  PRIMARY KEY  (`qno`)
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ss7`
+--
+
+LOCK TABLES `ss7` WRITE;
+/*!40000 ALTER TABLE `ss7` DISABLE KEYS */;
+INSERT INTO `ss7` VALUES (1,'Expansion for ss7 is','A. system signalling 7','B. signalling system 7','C. standard signalling 7','2'),(2,'Expansion for CCS7 is','A. Channel Common Signalling System 7','B. Common Channel Signalling System 7','C. Common Connection Signalling System 7','2'),(3,'Expansion for MTP is','A. Message Transfer Part','B. Manage Transfer Part','C. Message Turning Point ','1'),(4,'Expansion for SSP is','A. Switching Servicing Point','B. Switching Servicing Panel','C. Service Switching Point ','3'),(5,'Expansion for STP is','A. Switching Transer Point','B. Signal Transfer Point','C. Signal Transmission Point ','2'),(6,'Expansion for ISUP is','ISDN User Part','B. ISDN Universal Point','C. ISDN Universal Panel ','1'),(7,'Expansion for SCCP is','A. Signalling Conversion and Control Point','Signalling Connection and Control Part','C. Sign Connection and Conversion Point ','2'),(8,'Expansion for TCAP is','A. Transcation Capabilities Application Part','B. Transaction Capabilities Application Point','C. Transmission Capabilities Application Point ','1'),(9,'Expansion for INAP is','A. Intelling Network Application Point','B. Intelligent Network Application Part','C. International Network Applied Part ','2'),(10,'Expansion for MAP is','A. Mobile And Part','B. Mechanical Application Point','C. Mobile Application Part ','3'),(11,'Expansion for CLASS is','A. Custom Signalling Service Part','B. Custom Local Area Singalling Service Part','C. Camel Local Area Signalling Point ','2'),(12,'VOIP','A.  Voice over Intelling Point','B. Vehicle over IP','C. Voice over IP ','3'),(13,'Signalling link error correction and detection is performed by','A.  MTP1','B. MTP 2','C. MTP 3 ','2'),(14,'The message include call query,database query and response message is','A. MSU','B. FISU','C. LSSU ','1'),(15,'The SIGNALLING DATA LINK LEVEL of SS#7 is equivalent to Layer 1 of the OSI model','MTP 1','MTP 2','MTP 3','1'),(16,'The SIGNALLING LINK LEVEL of SS#7 is equivalent to Layer 2 of the OSI model','MTP 1','MTP 2','MTP 3','2'),(17,'The SIGNALLING LINK LEVEL of SS#7 is equivalent to Layer 3 of the OSI model','MTP 1','MTP 2','MTP 3','3'),(18,'The signals are transmitted only across adjacent signaling points is.','A. FISU','B. LSSU','C. FISU and LSSU ','3'),(19,'Signaling Message Handling and Signaling Network Management are performed by','A. MTP 1','B. MTP 3','C. MTP 2 ','2'),(20,'Which is used for sequence control in SU','A. Forward Sequence Number (FSN)','B. Backward Sequence Number (BSN)','C. Link Status Signal Unit (LSSU) ','1'),(21,'Which is used for SU acknowledgement ? ','A. Forward Sequence Number (FSN)','B. Backward Sequence Number (BSN)','C. Link Status Signal Unit (LSSU) ','2');
+/*!40000 ALTER TABLE `ss7` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_marks`
+--
+
+DROP TABLE IF EXISTS `user_marks`;
+CREATE TABLE `user_marks` (
+  `name` varchar(60) default NULL,
+  `computer_networks` int(11) default '-1',
+  `ims` int(11) default '-1',
+  `java` int(11) default '-1',
+  `ss7` int(11) default '-1',
+  `grammar` int(11) default '-1',
+  KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_marks`
+--
+
+LOCK TABLES `user_marks` WRITE;
+/*!40000 ALTER TABLE `user_marks` DISABLE KEYS */;
+INSERT INTO `user_marks` VALUES ('admin',0,0,0,5,100),('user1',-1,-1,-1,-1,-1),('user2',-1,-1,-1,-1,-1),('Junior',-1,-1,-1,-1,-1);
+/*!40000 ALTER TABLE `user_marks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_validation`
+--
+
+DROP TABLE IF EXISTS `user_validation`;
+CREATE TABLE `user_validation` (
+  `name` varchar(60) NOT NULL default '',
+  `passwd` varchar(80) NOT NULL default '',
+  PRIMARY KEY  (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_validation`
+--
+
+LOCK TABLES `user_validation` WRITE;
+/*!40000 ALTER TABLE `user_validation` DISABLE KEYS */;
+INSERT INTO `user_validation` VALUES ('admin','$1$.GRyNnpy$VjfoJEpYb.9aGRZpuZjYF1'),('user1','$1$TlGzVUT7$COJCbOw9VeRhdI1B/l.Os1'),('user2','$1$pTRgyDWp$qsr6lYDvGPojy35yAEX5w.'),('Junior','$1$QtfxCrxZ$KUOECATp1OqHNOGcMPr4L0');
+/*!40000 ALTER TABLE `user_validation` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2008-02-11 17:27:53

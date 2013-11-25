@@ -67,8 +67,15 @@ else if(isset($_REQUEST['dashboard'])){
     }
     else
     {
-     $query="update student set stdname='".htmlspecialchars($_REQUEST['cname'],ENT_QUOTES)."', stdpassword=ENCODE('".htmlspecialchars($_REQUEST['password'],ENT_QUOTES)."','oespass'),emailid='".htmlspecialchars($_REQUEST['email'],ENT_QUOTES)."',
-     contactno='".htmlspecialchars($_REQUEST['contactno'],ENT_QUOTES)."',address='".htmlspecialchars($_REQUEST['address'],ENT_QUOTES)."',city='".htmlspecialchars($_REQUEST['city'],ENT_QUOTES)."',pincode='".htmlspecialchars($_REQUEST['pin'],ENT_QUOTES)."' where stdid='".$_REQUEST['student']."';";
+     $query="update student set
+     stdname='".htmlspecialchars($_REQUEST['cname'],ENT_QUOTES)."',
+     name='".htmlspecialchars($_REQUEST['name'],ENT_QUOTES)."',
+     stdpassword=ENCODE('".htmlspecialchars($_REQUEST['password'],ENT_QUOTES)."','oespass'),
+     emailid='".htmlspecialchars($_REQUEST['email'],ENT_QUOTES)."',
+     contactno='".htmlspecialchars($_REQUEST['contactno'],ENT_QUOTES)."',
+     address='".htmlspecialchars($_REQUEST['address'],ENT_QUOTES)."',
+     city='".htmlspecialchars($_REQUEST['city'],ENT_QUOTES)."'
+     where stdid='".$_REQUEST['student']."';";
      if(!@executeQuery($query))
         $_GLOBALS['message']=mysql_error();
      else
@@ -130,7 +137,7 @@ else if(isset($_REQUEST['dashboard'])){
                        
  /************************** Step 3 - Case 1 *************************/
         // Default Mode - Displays the saved information.
-                        $result=executeQuery("select stdid,stdname,DECODE(stdpassword,'oespass') as stdpass ,emailid,contactno,address,city,pincode from student where stdname='".$_SESSION['stdname']."';");
+                        $result=executeQuery("select stdid,stdname,Name,DECODE(stdpassword,'oespass') as stdpass ,emailid,contactno,address,city from student where stdname='".$_SESSION['stdname']."';");
                         if(mysql_num_rows($result)==0) {
                            header('Location: stdwelcome.php');
                         }
@@ -150,12 +157,18 @@ else if(isset($_REQUEST['dashboard'])){
                   <td><input type="password" name="password" value="<?php echo htmlspecialchars_decode($r['stdpass'],ENT_QUOTES); ?>" size="16" onkeyup="isalphanum(this)" /></td>
                  
               </tr>
+              <tr>
+                  <td>Name</td>
+                  <td><input type="text" name="name" value="<?php echo htmlspecialchars_decode($r['Name'],ENT_QUOTES); ?>" size="16" /></td>
+
+              </tr>
 
               <tr>
                   <td>E-mail ID</td>
                   <td><input type="text" name="email" value="<?php echo htmlspecialchars_decode($r['emailid'],ENT_QUOTES); ?>" size="16" /></td>
               </tr>
-                       <tr>
+              
+              <tr>
                   <td>Contact No</td>
                   <td><input type="text" name="contactno" value="<?php echo htmlspecialchars_decode($r['contactno'],ENT_QUOTES); ?>" size="16" onkeyup="isnum(this)"/></td>
               </tr>
@@ -163,14 +176,22 @@ else if(isset($_REQUEST['dashboard'])){
                   <tr>
                   <td>Address</td>
                   <td><textarea name="address" cols="20" rows="3"><?php echo htmlspecialchars_decode($r['address'],ENT_QUOTES); ?></textarea></td>
-              </tr>
-                       <tr>
-                  <td>Role Aplikasi</td>
-                  <td><input type="text" name="city" value="<?php echo htmlspecialchars_decode($r['city'],ENT_QUOTES); ?>" size="16" onkeyup="isalpha(this)"/></td>
-              </tr>
-                       <tr>
-                  <td>Code Role Aplikasi</td>
-                  <td><input type="hidden" name="student" value="<?php echo $r['stdid']; ?>"/><input type="text" name="pin" value="<?php echo htmlspecialchars_decode($r['pincode'],ENT_QUOTES); ?>" size="16" onkeyup="isnum(this)" /></td>
+                  <td><input type="hidden" name="student" value="<?php echo $r['stdid']; ?>"/></td>
+                  </tr>
+             <tr>
+                <td>Role Aplikasi</td>
+                  <td>
+                  <select name="city">
+			<?php
+                        echo '<option value="'.$r['city'].'">'.$r['city'].'</option>';
+                        $query = "select * from test";
+                        $hasil =executeQuery($query);
+			while ($qtabel = mysql_fetch_array($hasil))
+			{
+				echo '<option value="'.$qtabel['testname'].'">'.$qtabel['testname'].'</option>';				
+			}
+			?>
+		</select>
               </tr>
 
             </table>

@@ -55,8 +55,13 @@ if(isset($_REQUEST['stdsubmit']))
     }
     else
     {
-     $query="insert into student values($newstd,'".htmlspecialchars($_REQUEST['cname'],ENT_QUOTES)."',ENCODE('".htmlspecialchars($_REQUEST['password'],ENT_QUOTES)."','oespass'),'".htmlspecialchars($_REQUEST['email'],ENT_QUOTES)."',
-     '".htmlspecialchars($_REQUEST['contactno'],ENT_QUOTES)."','".htmlspecialchars($_REQUEST['address'],ENT_QUOTES)."','".htmlspecialchars($_REQUEST['city'],ENT_QUOTES)."','".htmlspecialchars($_REQUEST['pin'],ENT_QUOTES)."')";
+     $query="insert into student values($newstd,'".htmlspecialchars($_REQUEST['cname'],ENT_QUOTES)."',
+     '".htmlspecialchars($_REQUEST['name'],ENT_QUOTES)."',
+     ENCODE('".htmlspecialchars($_REQUEST['password'],ENT_QUOTES)."','oespass'),
+     '".htmlspecialchars($_REQUEST['email'],ENT_QUOTES)."',
+     '".htmlspecialchars($_REQUEST['contactno'],ENT_QUOTES)."',
+     '".htmlspecialchars($_REQUEST['address'],ENT_QUOTES)."',
+     '".htmlspecialchars($_REQUEST['city'],ENT_QUOTES)."')";
      if(!@executeQuery($query))
                 $_GLOBALS['message']=mysql_error();
      else
@@ -116,6 +121,7 @@ if(isset($_REQUEST['stdsubmit']))
            /***************************** Step 2 ****************************/
           ?>
               <form id="admloginform"  action="register.php" method="post" onsubmit="return validateform('admloginform');">
+               
                    <table cellpadding="20" cellspacing="20" style="text-align:left;margin-left:15em" >
               <tr>
                   <td>User Name</td>
@@ -134,6 +140,11 @@ if(isset($_REQUEST['stdsubmit']))
 
               </tr>
               <tr>
+                  <td>Name</td>
+                  <td><input type="text" name="name" value="" size="16" /></td>
+
+              </tr>
+              <tr>
                   <td>E-mail </td>
                   <td><input type="text" name="email" value="" size="16" /></td>
               </tr>
@@ -142,20 +153,28 @@ if(isset($_REQUEST['stdsubmit']))
                   <td><input type="text" name="contactno" value="" size="16" onkeyup="isnum(this)"/></td>
               </tr>
 
-                  <tr>
+               <tr>
                   <td>Address</td>
                   <td><textarea name="address" cols="20" rows="3"></textarea></td>
               </tr>
-                       <tr>
+               <tr>
                   <td>Role Aplikasi</td>
-                  <td><input type="text" name="city" value="" size="16" onkeyup="isalpha(this)"/></td>
+                  <td>
+                  <select name="city">
+			<?php
+                        $query = "select * from test";
+                        $hasil =executeQuery($query);
+			while ($qtabel = mysql_fetch_array($hasil))
+			{
+				echo '<option value="'.$qtabel['testname'].'">'.$qtabel['testname'].'</option>';				
+			}
+			?>
+                    </select>
+                  </td>
               </tr>
-                       <tr>
-                  <td>Code Role Aplikasi</td>
-                  <td><input type="text" name="pin" value="" size="16" onkeyup="isnum(this)" /></td>
-              </tr>
-                       <tr>
-                           <td style="text-align:right;"> <input type="submit" name="stdsubmit" value="Register" class="subbtn" /></td>
+              
+               <tr>
+                <td style="text-align:right;"> <input type="submit" name="stdsubmit" value="Register" class="subbtn" /></td>
                   <td><input type="reset" name="reset" value="Reset" class="subbtn"/>
               </tr>
                   

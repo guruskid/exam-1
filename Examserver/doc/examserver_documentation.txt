@@ -1,0 +1,80 @@
+ Copyright (C) <2007> <Shankar Palaniappan>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+For details or issues with program
+Please contact shankar_p@users.sourceforge.net
+               shankar.palaniappan@gmail.com
+
+
+Documentation
+
+1.Features
+  1.1 User has to Login to attend the Exam
+  1.2 User can test his skills in various fields
+  1.3 User can know the result of Exam 
+  1.4 Bar chart at the end will show the result in terms of percentage gain
+      and loss   
+
+2.Who can use this Examserver
+  2.1 The comapanies can use this product to recruit the Candidates
+  2.2 The Students can use this product to test his skills 
+
+3.Target of the Project
+  3.1 To Be used effectively by the IT Companies and also the Persons who wants
+      to test his skills
+
+4.Problems Faced
+  I developed a same product in Servlets and I really wants to explore
+  my open source stuffs, the same product has came in form of LAMP.
+  4.1 To retreive the users and questions from the session
+  4.2 To allow minimal time to select the choice and to stay for long
+      time after displaying the results 
+
+5.Improvements
+  5.1 Admin as user Feature has to be improved
+  5.2 User has to get Permission from "Administrator" for attending the Exam
+  5.3 User must be not allowed to write the Exam more than once.
+  5.5.Appearance of the Examserver can be improved a lot.
+  5.6.Questions must be selected as random from the question Bank.
+  5.7 MySql Database has to be normalized.  
+
+6.Issues
+  If you have any Issues feel free to ask and the developers/Testers are
+  always welcomed to improve this product
+
+7.Logic behind Examserver
+  7.1  The questions are stored in MySQL database.
+  7.2  Session handling is used to effectively for storing the questions and the
+       answers
+  7.3  Apache server is needed to handle the PHP pages
+  7.4  Refer the manual of PHP for more information to connect PHP with MySQL
+  7.5  crypt() function is used to encrypt the password from the user
+  7.6  The page is refreshed to allow minimal time to select the correct choice 
+  7.7  The object oriented analysis and design approach is used inorder to
+       reduce the coupling between the modules and to increase the cohesion of
+       examserver
+  7.8  If the user has lost the password, only admin will have the
+       facility to change the password of other users.
+  7.9  The user can configure the hostname other than localhost (default)
+       in examserver_global.php and
+         examserver_install.sh
+  7.10 Only the admin is having the permission to add the user
+  7.11 Display of Exam results are stored for later Display.
+
+8. Admin Facility
+  8.1 The admin user can change the password of other users and he can
+      view other users marks also.
+  8.2 Only admin has the facility to create or add user account.    

@@ -1,0 +1,55 @@
+Copyright (C) <2007> <Shankar Palaniappan>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+For details or issues with program
+Please contact shankar_p@users.sourceforge.net
+               shankar.palaniappan@gmail.com
+
+Steps Required to install Examserv 
+====================================
+
+1. Start the Mysql server
+	service mysqld start
+2. Start the Apache server
+	service httpd start
+3. check the status of MySQL and Apache
+        service mysqld status
+        service httpd status 
+4. Untar the Examserver.tar.gz in /var/www/html (default)
+   or in document root of Apache server  
+        cd /var/www/html
+        ls -l ExamServer.tar.gz
+        tar -xvzf Examserver.tar.gz
+5. Install the database from the command line 
+        php examserver_install.php
+
+ Output:Examserv Installation Success !
+
+6. Start and Enjoy the Examserver from the browser
+    http://localhost/Examserver
+
+7. hostname can be configured other than localhost.
+   The user must configure manually in
+   examserver_global.php
+   examserver_install.sh 
+
+8. Login with "admin" as user name and "admin" as password
+   for administrator
+
+Please feel free to contact ! If you have any troubles in Installing.
+
+Cheer
+Shankar Palaniappan  

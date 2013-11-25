@@ -1,0 +1,14 @@
+The server name has to be changed in examserver_global.php.
+
+The configuration parameter has to be changed and the user has to change
+the hostname here
+
+
+$examserver_hostname="localhost";
+
+
+for example
+
+$examserver_hostname="hostname";
+
+http://hostname/Examserver/

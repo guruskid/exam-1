@@ -107,7 +107,22 @@ else if(isset($_REQUEST['logout'])) {
                         <?php
 
                         if(isset($_REQUEST['details'])) {
-                            $result=executeQuery("select s.stdname,t.testname,sub.subname,DATE_FORMAT(st.starttime,'%d %M %Y %H:%i:%s') as stime,TIMEDIFF(st.endtime,st.starttime) as dur,(select sum(marks) from question where testid=".$_REQUEST['details'].") as tm,IFNULL((select sum(q.marks) from studentquestion as sq, question as q where sq.testid=q.testid and sq.qnid=q.qnid and sq.answered='answered' and sq.stdanswer=q.correctanswer and sq.stdid=".$_SESSION['stdid']." and sq.testid=".$_REQUEST['details']."),0) as om from student as s,test as t, subject as sub,studenttest as st where s.stdid=st.stdid and st.testid=t.testid and t.subid=sub.subid and st.stdid=".$_SESSION['stdid']." and st.testid=".$_REQUEST['details'].";") ;
+                            $result=executeQuery("select s.stdname,t.testname,sub.subname,DATE_FORMAT(st.starttime,'%d %M %Y %H:%i:%s') as stime,TIMEDIFF(st.endtime,st.starttime) as dur,(select sum(marks)
+                                                 from question where testid=".$_REQUEST['details'].") as tm,
+                                                 IFNULL((select sum(q.marks)
+                                                  from studentquestion as sq, question as q
+                                                  where sq.testid=q.testid
+                                                  and sq.qnid=q.qnid
+                                                  and sq.answered='answered'
+                                                  and sq.stdanswer=q.correctanswer
+                                                  and sq.stdid=".$_SESSION['stdid']."
+                                                  and sq.testid=".$_REQUEST['details']."),0) as om
+                                                 from student as s,test as t, subject as sub,studenttest as st
+                                                 where s.stdid=st.stdid
+                                                 and st.testid=t.testid
+                                                 and t.subid=sub.subid
+                                                 and st.stdid=".$_SESSION['stdid']."
+                                                 and st.testid=".$_REQUEST['details'].";") ;
                             if(mysql_num_rows($result)!=0) {
 
                                 $r=mysql_fetch_array($result);
@@ -223,7 +238,9 @@ else if(isset($_REQUEST['logout'])) {
                         else {
 
 
-                            $result=executeQuery("select st.*,t.testname,t.testdesc,DATE_FORMAT(st.starttime,'%d %M %Y %H:%i:%s') as startt from studenttest as st,test as t where t.testid=st.testid and st.stdid=".$_SESSION['stdid']." and st.status='over' order by st.testid;");
+                            $result=executeQuery("select st.*,t.testname,t.testdesc,DATE_FORMAT(st.starttime,'%d %M %Y %H:%i:%s') as startt
+                                                 from studenttest as st,test as t
+                                                 where t.testid=st.testid and st.stdid=".$_SESSION['stdid']." and st.status='over' order by st.testid;");
                             if(mysql_num_rows($result)==0) {
                                 echo"<h3 style=\"color:#0000cc;text-align:center;\">I Think You Haven't Attempted Any Exams Yet..! Please Try Again After Your Attempt.</h3>";
                             }

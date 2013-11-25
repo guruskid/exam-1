@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Student's Page</title>
+<script language="javascript">
+function doSubmit() {
+	if (document.log.suid.value=="")
+	{
+		alert("Enter Student ID");
+		return false; 
+	}
+	else if (document.log.sname.value=="")
+	{
+		alert("Enter your name");
+		return false; 
+	}
+	else {
+		if (confirm("Your Name: " + document.log.sname.value +
+			  "\nStudent ID: "+ document.log.suid.value)) {
+					return true;
+					}
+		else {
+			return false;
+			}
+	}
+}
+</script>
+</head>
+<body>
+<form method="POST" action="paper.php" name="log">
+<table border="0" cellpadding="0" cellspacing="0" align="right">
+   <tr>
+    <td><b>Student ID:</b></td>
+    <td><input type="text" name="suid" size="20"></td>
+  </tr>
+  <tr>
+    <td><b>Name:</b></td>
+    <td><input type="text" name="sname" size="20"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><input type="submit" value="Go" onClick="return doSubmit()"></td>
+  </tr></table> 
+</form>
+</body>
+</html>

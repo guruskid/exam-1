@@ -86,7 +86,14 @@ if (!isset($_SESSION['admname'])) {
     if (empty($_REQUEST['cname']) || empty($_REQUEST['password']) || empty($_REQUEST['email'])) {
         $_GLOBALS['message'] = "Some of the required Fields are Empty.Therefore Nothing is Updated";
     } else {
-        $query = "update student set stdname='" . htmlspecialchars($_REQUEST['cname'], ENT_QUOTES) . "', stdpassword=ENCODE('" . htmlspecialchars($_REQUEST['password']) . "','oespass'),emailid='" . htmlspecialchars($_REQUEST['email'], ENT_QUOTES) . "',contactno='" . htmlspecialchars($_REQUEST['contactno'], ENT_QUOTES) . "',address='" . htmlspecialchars($_REQUEST['address'], ENT_QUOTES) . "',city='" . htmlspecialchars($_REQUEST['city'], ENT_QUOTES) . "',pincode='" . htmlspecialchars($_REQUEST['pin'], ENT_QUOTES) . "' where stdid='" . htmlspecialchars($_REQUEST['student'], ENT_QUOTES) . "';";
+        $query = "update student set stdname='" . htmlspecialchars($_REQUEST['cname'], ENT_QUOTES) . "',
+        Name='" . htmlspecialchars($_REQUEST['name'], ENT_QUOTES) . "',
+        stdpassword=ENCODE('" . htmlspecialchars($_REQUEST['password']) . "','oespass'),
+        emailid='" . htmlspecialchars($_REQUEST['email'], ENT_QUOTES) . "',
+        contactno='" . htmlspecialchars($_REQUEST['contactno'], ENT_QUOTES) . "',
+        address='" . htmlspecialchars($_REQUEST['address'], ENT_QUOTES) . "',
+        city='" . htmlspecialchars($_REQUEST['city'], ENT_QUOTES) . "'
+        where stdid='" . htmlspecialchars($_REQUEST['student'], ENT_QUOTES) . "';";
         if (!@executeQuery($query))
             $_GLOBALS['message'] = mysql_error();
         else
@@ -112,7 +119,13 @@ else if (isset($_REQUEST['savea'])) {
     } else if (mysql_num_rows($result) > 0) {
         $_GLOBALS['message'] = "Sorry User Already Exists.";
     } else {
-        $query = "insert into student values($newstd,'" . htmlspecialchars($_REQUEST['cname'], ENT_QUOTES) . "',ENCODE('" . htmlspecialchars($_REQUEST['password'], ENT_QUOTES) . "','oespass'),'" . htmlspecialchars($_REQUEST['email'], ENT_QUOTES) . "','" . htmlspecialchars($_REQUEST['contactno'], ENT_QUOTES) . "','" . htmlspecialchars($_REQUEST['address'], ENT_QUOTES) . "','" . htmlspecialchars($_REQUEST['city'], ENT_QUOTES) . "','" . htmlspecialchars($_REQUEST['pin'], ENT_QUOTES) . "')";
+        $query = "insert into student values($newstd,'" . htmlspecialchars($_REQUEST['cname'], ENT_QUOTES) . "',
+        '" . htmlspecialchars($_REQUEST['name'], ENT_QUOTES) . "',
+        ENCODE('" . htmlspecialchars($_REQUEST['password'], ENT_QUOTES) . "','oespass'),
+        '" . htmlspecialchars($_REQUEST['email'], ENT_QUOTES) . "',
+        '" . htmlspecialchars($_REQUEST['contactno'], ENT_QUOTES) . "',
+        '" . htmlspecialchars($_REQUEST['address'], ENT_QUOTES) . "',
+        '" . htmlspecialchars($_REQUEST['city'], ENT_QUOTES) . "')";
         if (!@executeQuery($query)) {
             if (mysql_errno () == 1062) //duplicate value
                 $_GLOBALS['message'] = "Given User Name voilates some constraints, please try with some other name.";
@@ -206,6 +219,11 @@ if (isset($_SESSION['admname'])) {
 
                         </tr>
                         <tr>
+                            <td>Name</td>
+                            <td><input type="text" name="name" value="" size="16"/></td>
+
+                        </tr>
+                        <tr>
                             <td>E-mail </td>
                             <td><input type="text" name="email" value="" size="16" /></td>
                         </tr>
@@ -219,13 +237,21 @@ if (isset($_SESSION['admname'])) {
                             <td><textarea name="address" cols="20" rows="3"></textarea></td>
                         </tr>
                         <tr>
-                            <td>Role</td>
-                            <td><input type="text" name="city" value="" size="16" onkeyup="isalpha(this)"/></td>
+                            <td>Role Aplikasi</td>
+                  <td>
+                  <select name="city">
+			<?php
+                        $query = "select * from test";
+                        $hasil =executeQuery($query);
+			while ($qtabel = mysql_fetch_array($hasil))
+			{
+				echo '<option value="'.$qtabel['testname'].'">'.$qtabel['testname'].'</option>';				
+			}
+			?>
+                    </select>
+                  </td>
                         </tr>
-                        <tr>
-                            <td>Code Role Aplikasi</td>
-                            <td><input type="text" name="pin" value="" size="16" onkeyup="isnum(this)" /></td>
-                        </tr>
+                       
 
                     </table>
 
@@ -233,7 +259,7 @@ if (isset($_SESSION['admname'])) {
     } else if (isset($_REQUEST['edit'])) {
         /*         * ************************ Step 3 - Case 2 ************************ */
         // To allow Editing Existing User Information
-        $result = executeQuery("select stdid,stdname,DECODE(stdpassword,'oespass') as stdpass ,emailid,contactno,address,city,pincode from student where stdname='" . htmlspecialchars($_REQUEST['edit'], ENT_QUOTES) . "';");
+        $result = executeQuery("select stdid,stdname,name,DECODE(stdpassword,'oespass') as stdpass ,emailid,contactno,address,city from student where stdname='" . htmlspecialchars($_REQUEST['edit'], ENT_QUOTES) . "';");
         if (mysql_num_rows($result) == 0) {
             header('Location: usermng.php');
         } else if ($r = mysql_fetch_array($result)) {
@@ -258,6 +284,11 @@ if (isset($_SESSION['admname'])) {
                             <td><input type="text" name="email" value="<?php echo htmlspecialchars_decode($r['emailid'], ENT_QUOTES); ?>" size="16" /></td>
                         </tr>
                         <tr>
+                            <td>Name</td>
+                            <td><input type="text" name="name" value="<?php echo htmlspecialchars_decode($r['name'], ENT_QUOTES); ?>" size="16" /></td>
+
+                        </tr>
+                        <tr>
                             <td>Contact No</td>
                             <td><input type="text" name="contactno" value="<?php echo htmlspecialchars_decode($r['contactno'], ENT_QUOTES); ?>" size="16" onkeyup="isnum(this)"/></td>
                         </tr>
@@ -267,13 +298,22 @@ if (isset($_SESSION['admname'])) {
                             <td><textarea name="address" cols="20" rows="3"><?php echo htmlspecialchars_decode($r['address'], ENT_QUOTES); ?></textarea></td>
                         </tr>
                         <tr>
-                            <td>Role</td>
-                            <td><input type="text" name="city" value="<?php echo htmlspecialchars_decode($r['city'], ENT_QUOTES); ?>" size="16" onkeyup="isalpha(this)"/></td>
+                        <td>Role Aplikasi</td>
+                            <td>
+                            <select name="city">
+                                <?php
+                                echo '<option value="'.$r['city'].'">'.$r['city'].'</option>';
+                                $query = "select * from test";
+                                $hasil =executeQuery($query);
+                                while ($qtabel = mysql_fetch_array($hasil))
+                                {
+				echo '<option value="'.$qtabel['testname'].'">'.$qtabel['testname'].'</option>';				
+                                }
+                                ?>
+                    </select>
+                            <td><input type="hidden" name="student" value="<?php echo $r['stdid']; ?>"/></td>
                         </tr>
-                        <tr>
-                            <td>Code Role Aplikasi</td>
-                            <td><input type="hidden" name="student" value="<?php echo htmlspecialchars_decode($r['stdid'], ENT_QUOTES); ?>"/><input type="text" name="pin" value="<?php echo $r['pincode']; ?>" size="16" onkeyup="isnum(this)" /></td>
-                        </tr>
+                        
 
                     </table>
 <?php
@@ -292,6 +332,7 @@ if (isset($_SESSION['admname'])) {
                         <tr>
                             <th>&nbsp;</th>
                             <th>User Name</th>
+                            <th>Name</th>
                             <th>Email-ID</th>
                             <th>Contact Number</th>
                             <th>Edit</th>
@@ -303,9 +344,13 @@ if (isset($_SESSION['admname'])) {
                             echo "<tr class=\"alt\">";
                         else
                             echo "<tr>";
-                        echo "<td style=\"text-align:center;\"><input type=\"checkbox\" name=\"d$i\" value=\"" . $r['stdid'] . "\" /></td><td>" . htmlspecialchars_decode($r['stdname'], ENT_QUOTES)
-                        . "</td><td>" . htmlspecialchars_decode($r['emailid'], ENT_QUOTES) . "</td><td>" . htmlspecialchars_decode($r['contactno'], ENT_QUOTES) . "</td>"
-                        . "<td class=\"tddata\"><a title=\"Edit " . htmlspecialchars_decode($r['stdname'], ENT_QUOTES) . "\"href=\"usermng.php?edit=" . htmlspecialchars_decode($r['stdname'], ENT_QUOTES) . "\"><img src=\"../images/edit.png\" height=\"30\" width=\"40\" alt=\"Edit\" /></a></td></tr>";
+                        echo "<td style=\"text-align:center;\"><input type=\"checkbox\" name=\"d$i\" value=\"" . $r['stdid'] . "\" /></td>
+                              <td>" . htmlspecialchars_decode($r['stdname'], ENT_QUOTES). "</td>
+                              <td>" . htmlspecialchars_decode($r['Name'], ENT_QUOTES). "</td>
+                              <td>" . htmlspecialchars_decode($r['emailid'], ENT_QUOTES) . "</td>
+                              <td>" . htmlspecialchars_decode($r['contactno'], ENT_QUOTES) . "</td>"
+                        . "<td class=\"tddata\"><a title=\"Edit " . htmlspecialchars_decode($r['stdname'], ENT_QUOTES) . "\"href=\"usermng.php?edit=" . htmlspecialchars_decode($r['stdname'], ENT_QUOTES) . "\"><img src=\"../images/edit.png\" height=\"30\" width=\"40\" alt=\"Edit\" /></a></td>
+                        </tr>";
                     }
 ?>
                     </table>

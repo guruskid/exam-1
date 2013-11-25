@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Exam Builder</title>
+<script language="JavaScript">
+function start() {
+	login.uname.focus();
+}
+function doSubmit()
+{
+	if (document.login.uname.value=="" || document.login.passwd.value=="") {
+		alert("Please enter valid data");
+		return false;
+    }
+	document.login.submit();
+}
+</script>
+</head>
+<body onLoad="start()">
+<form action="login.php" method="post" name="login">
+<center>
+<table cellspacing="0" cellpadding="5" border="0" width="245">
+ <tr>
+ 	<td colspan="2" bgcolor="#99CCFF"><B><font color="#800000">User Login<font></B></td>
+ </tr>
+ <tr>
+   <td bgcolor="#C0C0C0" width="64"><font color="#800000">Username:</font></td>
+   <td bgcolor="#C0C0C0" width="181"><input type="text" name="uname" size="22"></td>
+ </tr>
+ <tr>
+   <td bgcolor="#C0C0C0" width="64"><font color="#800000">Password:</font></td>
+   <td bgcolor="#C0C0C0" width="181">
+   <input type="password" name="passwd" size="15"  maxlength="10">&nbsp;&nbsp;
+   <input type="submit" value="Go" onClick="return doSubmit()"></td>
+ </tr>
+</table>
+</center>
+</form>
+</body>
+</html>
